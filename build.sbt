@@ -1,19 +1,16 @@
-name := "Lift 2.6 starter template"
+name := "lift-ng-workshop"
 
-version := "0.0.4"
+version := "0.0.1"
 
-organization := "net.liftweb"
+organization := "org.github"
 
 scalaVersion := "2.11.4"
 
 resolvers ++= Seq("snapshots"     at "https://oss.sonatype.org/content/repositories/snapshots",
                   "staging"       at "https://oss.sonatype.org/content/repositories/staging",
-                  "releases"      at "https://oss.sonatype.org/content/repositories/releases"
-                 )
+                  "releases"      at "https://oss.sonatype.org/content/repositories/releases")
 
 seq(webSettings :_*)
-
-unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
@@ -24,12 +21,10 @@ libraryDependencies ++= {
     "net.liftweb"       %% "lift-webkit"        % liftVersion        % "compile",
     "net.liftweb"       %% "lift-mapper"        % liftVersion        % "compile",
     "net.liftmodules"   %% "lift-jquery-module_2.6" % "2.8",
-    "org.eclipse.jetty" % "jetty-webapp"        % jettyVersion  % "container,test",
-    "org.eclipse.jetty" % "jetty-plus"          % jettyVersion  % "container,test", // For Jetty Config
-    "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container,test" artifacts Artifact("javax.servlet", "jar", "jar"),
-    "ch.qos.logback"    % "logback-classic"     % "1.0.6",
-    "org.specs2"        %% "specs2"             % "2.3.12"             % "test",
-    "com.h2database"    % "h2"                  % "1.3.167"
+    "org.eclipse.jetty" % "jetty-webapp"        % jettyVersion  % "container",
+    "org.eclipse.jetty" % "jetty-plus"          % jettyVersion  % "container", // For Jetty Config
+    "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container" artifacts Artifact("javax.servlet", "jar", "jar"),
+    "ch.qos.logback"    % "logback-classic"     % "1.0.6"
   )
 }
 

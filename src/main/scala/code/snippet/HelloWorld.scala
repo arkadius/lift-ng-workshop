@@ -33,7 +33,7 @@ class HelloWorld extends StatefulSnippet with RenderFuncDispatch {
           memoize.setHtml()
         })
       } else {
-        SHtml.submit("Non-ajax", nextNumbers)
+        SHtml.submit("Post", nextNumbers)
       }
     "type=submit" #> renderedHtml
   }

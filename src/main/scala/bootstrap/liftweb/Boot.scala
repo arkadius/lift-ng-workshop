@@ -1,18 +1,9 @@
 package bootstrap.liftweb
 
-import net.liftweb._
-import util._
-import Helpers._
-
-import common._
-import http._
-import js.jquery.JQueryArtifacts
-import sitemap._
-import Loc._
-import mapper._
-
-import code.model._
 import net.liftmodules.JQueryModule
+import net.liftweb.common._
+import net.liftweb.http._
+import net.liftweb.http.js.jquery.JQueryArtifacts
 
 
 /**

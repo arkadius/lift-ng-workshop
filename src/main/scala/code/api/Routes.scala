@@ -1,12 +1,15 @@
 package code.api
 
+import code.domain.{GetNumbers, NextNumbers, NumbersActor}
+import net.liftweb.common.Empty
 import net.liftweb.http.rest.RestHelper
-import net.liftweb.json.JsonDSL._
-import net.liftweb.json._
 
 class Routes extends RestHelper {
- serve {
-   case "api" :: "numbers" :: Nil JsonGet req =>
-     List(3, 4, 5): JValue
+ serveJxa {
+   case JsonGet("api" :: "numbers" :: Nil, _) =>
+     NumbersActor !? GetNumbers
+   case Get("api" :: "numbers" :: "next" :: Nil, _) =>
+     NumbersActor ! NextNumbers
+     Empty
  }
 }

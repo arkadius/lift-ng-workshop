@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+  <title>Home</title>
+</head>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=default;at=content">
+  <script type="application/javascript">
+    var app = angular.module("MyApp", ["ngResource"]);
+    app.factory("numberProvidingSvc", function($resource) {
+      return $resource("/api/numbers")
+    });
+    app.controller("MyCtrl", ["$scope", "numberProvidingSvc", function ($scope, numberProvidingSvc) {
+      $scope.numbers = numberProvidingSvc.query();
+    }]);
+  </script>
+  <div id="list" ng-app="MyApp" ng-controller="MyCtrl">
+    <ul>
+      <li ng-repeat="number in numbers">{{number}}</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

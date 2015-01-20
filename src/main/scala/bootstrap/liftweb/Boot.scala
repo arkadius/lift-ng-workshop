@@ -1,5 +1,6 @@
 package bootstrap.liftweb
 
+import code.api.Routes
 import net.liftmodules.JQueryModule
 import net.liftweb.common._
 import net.liftweb.http._
@@ -33,6 +34,10 @@ class Boot {
 
     // Use HTML5 for rendering
     LiftRules.htmlProperties.default.set((r: Req) =>
-      new Html5Properties(r.userAgent))    
+      new Html5Properties(r.userAgent))
+
+    net.liftmodules.ng.AngularJS.init("resource")
+
+    LiftRules.dispatch.append(new Routes)
   }
 }

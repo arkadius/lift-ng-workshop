@@ -1,3 +1,10 @@
+import com.banno.license.Plugin.LicenseKeys._
+import com.banno.license.Licenses._
+
+licenseSettings
+
+license := apache2("Copyright 2015 the original author or authors.")
+
 name := "lift-ng-workshop"
 
 version := "0.0.1"

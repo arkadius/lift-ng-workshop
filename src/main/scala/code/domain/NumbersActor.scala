@@ -18,13 +18,15 @@ package code.domain
 import java.util.UUID
 import java.util.concurrent.ScheduledFuture
 
+import net.liftmodules.ng.Angular.NgModel
 import net.liftweb.actor.LiftActor
+import net.liftweb.http.ListenerManager
 import net.liftweb.util._
 import Helpers._
 
 import scala.util.Random
 
-object NumbersActor extends LiftActor {
+object NumbersActor extends LiftActor with ListenerManager {
   private var numbers: Numbers = randomNumbers
 
   private var scheduledFuture = Option.empty[ScheduledFuture[Unit]]
@@ -36,7 +38,7 @@ object NumbersActor extends LiftActor {
     Numbers(values, UUID.randomUUID().toString)
   }
 
-  override protected def messageHandler = {
+  override protected def lowPriority: PartialFunction[Any, Unit] = {
     case GetNumbers =>
       reply(numbers)
     case ScheduleNext =>
@@ -44,15 +46,24 @@ object NumbersActor extends LiftActor {
       scheduledFuture = Some(Schedule.schedule(this, NextNumbers, 5.seconds))
     case NextNumbers =>
       numbers = randomNumbers
+      updateListeners()
       this ! ScheduleNext
   }
 
   this ! ScheduleNext
+
+  override protected def createUpdate: Any = {
+    numbers
+  }
 }
 
 case object GetNumbers
 
-case class Numbers(values: List[Int], uuid: String)
+case class Numbers(values: List[Int], uuid: String) extends NgModel
+
+object Numbers {
+  def zero: Numbers = Numbers(Nil, "")
+}
 
 case object ScheduleNext
 

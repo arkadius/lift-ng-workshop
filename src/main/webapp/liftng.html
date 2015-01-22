@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+  <title>Home</title>
+</head>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=default;at=content">
+  <script data-lift="MyServices"></script>
+  <script type="application/javascript">
+    var app = angular.module("MyApp", ["MyServices"]);
+    app.controller("MyCtrl", ["$scope", "$interval", "numbersSvc", function ($scope, $interval, numbersSvc) {
+      $scope.numbers = {};
+
+      $scope.nextNumbers = function() {
+        numbersSvc.next();
+      };
+
+      $scope.$watch("numbers", function(newValue, oldValue) {
+        console.log("numbers changed", newValue, oldValue);
+      });
+    }]);
+  </script>
+  <div id="list" ng-app="MyApp" ng-controller="MyCtrl" data-lift="Angular.bind?type=NumbersBinder">
+    <button ng-click="nextNumbers()">Next</button>
+    <ul>
+      <li ng-repeat="number in numbers.values track by $index">{{number}}</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

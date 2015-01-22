@@ -29,6 +29,7 @@ libraryDependencies ++= {
     "net.liftweb"       %% "lift-webkit"        % liftVersion        % "compile",
     "net.liftweb"       %% "lift-mapper"        % liftVersion        % "compile",
     "net.liftmodules"   %% "lift-jquery-module_2.6" % "2.8",
+    "net.liftmodules"   %% s"ng_$liftEdition" % "0.6.2",
     "net.liftmodules"   %% s"ng-js_$liftEdition" % "0.2_1.3.8",
     "org.eclipse.jetty" % "jetty-webapp"        % jettyVersion  % "container",
     "org.eclipse.jetty" % "jetty-plus"          % jettyVersion  % "container", // For Jetty Config

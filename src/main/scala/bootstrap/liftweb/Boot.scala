@@ -21,7 +21,6 @@ import net.liftweb.common._
 import net.liftweb.http._
 import net.liftweb.http.js.jquery.JQueryArtifacts
 
-
 /**
  * A class that's instantiated early and run.  It allows the application
  * to modify lift's environment
@@ -52,6 +51,7 @@ class Boot {
       new Html5Properties(r.userAgent))
 
     net.liftmodules.ng.AngularJS.init("resource")
+    net.liftmodules.ng.Angular.init()
 
     LiftRules.dispatch.append(new Routes)
   }

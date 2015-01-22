@@ -48,6 +48,7 @@ object NumbersActor extends LiftActor with ListenerManager {
       numbers = randomNumbers
       updateListeners()
       this ! ScheduleNext
+      reply(Unit)
   }
 
   this ! ScheduleNext
